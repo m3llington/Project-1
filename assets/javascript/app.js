@@ -41,4 +41,5 @@ function displayEvents(){
 displayEvents();
 
 // console.log("works");
+console.log("works");
 
