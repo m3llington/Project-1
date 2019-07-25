@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 function displayBreweries(){
     
@@ -32,6 +32,6 @@ function displayEvents(){
 }
 
 displayEvents();
-=======
+
 console.log("works");
->>>>>>> master
+
