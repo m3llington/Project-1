@@ -1,8 +1,15 @@
 
 function displayBreweries(){
+    console.log("test");
     
-    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"";
-    var city = $("#event").val();
+  $("#Event").on("submit", function(event){
+    event.preventDefault();
+    console.log("test2");
+    var city = $("#event").val().trim();
+    //searches for breweries by city, and limit it to showing 5
+    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
+    // var city = $("#event").val();
+    //must create on click event to take in value from form when submit is clicked
 
     $.ajax({
         url: queryURL,
@@ -51,22 +58,34 @@ function displayBreweries(){
          }
 
      });
+  });
+  
+  
+  
+  
+   
+    
+
 }
 displayBreweries();
 
 
 function displayEvents(){
-    
-    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&postalCode=32803";
-
+    var city = "orlando";
+    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "";
+    console.log("displayevents");
     $.ajax({
         url : queryURL,
         method : "GET"
     }).then(function(response) {
-        // console.log(response);
-        for (var i = 0; i < response._embedded.events.length ; i++){
-            var event = response._embedded.events;
-        // console.log (event[0].dates.start.dateTime); 
+        var eventsArray = response._embedded.events
+       
+       
+        
+
+        for (var i = 0; i < eventsArray.length ; i++){
+            
+           console.log(eventsArray[i].name);
         }    
     });
 }
