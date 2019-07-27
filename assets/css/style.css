@@ -1,0 +1,25 @@
+body { 
+     height: 900px;
+  background-color: black
+}
+
+
+#html1 { 
+    background-image:url("../Images/download\ \(1\).jpeg");
+    background-repeat: round;
+    background-position-y: 10px;
+    background-position-x: center;
+    color: white;
+   
+
+}
+
+#title { 
+
+    margin-inline-start: 400px;;
+}
+
+.lead { 
+    margin-inline-start: 420px;;
+   
+}
