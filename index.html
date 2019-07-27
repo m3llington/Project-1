@@ -5,27 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <title>Project-1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
-
-
+    <div class="jumbotron" id="html1">
+        <div id="words">
+            <h1 class="display-4" id="title">What's The Move?</h1>
+            <p class="lead">Find events and pre-game spots in that area!!</p>
+        </div>
+    </div>
+    <div id="html2">
+    </div>
     <header id="header">
-        PAGE1
-        <a href="index2.html">link to second page</a>
         <form id="Event">
-
-            <input type="text" id="country" placeholder="country">
-            <input type="text" id="state" placeholder="state">
-            <input type="text" id="city" placeholder="city">
-            <input type="text" id="address" placeholder="street address">
-            <input type="text" id="event" placeholder="event">
-            <button id="search"> search </button>
-
+            <input type="text" id="event">
+            <button id="search">Search By City</button>
         </form>
     </header>
     <table class="table table-dark">
@@ -52,10 +51,14 @@
     </main>
 
 
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- External Javascript -->
+    <script src="assets/javascript/app.js"></script>
 
 
 
-    <script src="assets\javascript\app.js"></script>
 </body>
+
 
 </html>

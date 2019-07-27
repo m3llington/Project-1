@@ -1,96 +1,81 @@
-
-var country = $("#country").val().trim()
-var state = $("#state").val().trim()
-var city = $("#city").val().trim()
-var address = $("#address").val().trim()
-var events = $("#event").val().trim()
-
-$("#search").on("click", function () {
-    event.preventDefault()
-    if (city.length > 0 || address.length > 0 || events.length > 0 || country.length > 0 || state.length > 0) {
-        console.log("you have something");
-    } else {
-        console.log("its blank");
-    }
-})
-
-
-
-
 function displayBreweries() {
 
+    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=orlando";
+    // var city = $("#event").val();
+    // tried using this ^ variable to let the user type a city and then feed it through as a parameter, but for some reason it wouldn't populate a list based on the city
 
-    function displayBreweries() {
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
 
-        var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city + "";
-        var city = $("#event").val();
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-
-
-            var breweries = response;
-            for (var i = 0; i < breweries.length; i++) {
-                //  Creating variables to hold brewerie information
-                var brewery = {
-                    name: breweries[i].name,
-                    postalCode: breweries[i].postal_code,
-                    type: breweries[i].brewery_type,
-                    city: breweries[i].city,
-                    phone: breweries[i].phone,
-                    state: breweries[i].state,
-                    street: breweries[i].street,
-                    url: breweries[i].website_url
-                };
+        var breweries = response;
+        for (var i = 0; i < breweries.length; i++) {
+            //  Creating variables to hold brewery information
+            var brewery = {
+                name: breweries[i].name,
+                postalCode: breweries[i].postal_code,
+                type: breweries[i].brewery_type,
+                city: breweries[i].city,
+                phone: breweries[i].phone,
+                state: breweries[i].state,
+                street: breweries[i].street,
+                url: breweries[i].website_url
+            };
 
 
 
-                console.log(brewery);
+            console.log(brewery);
 
-                var tr = $("<tr>");
+            var tr = $("<tr>");
 
-                var tdName = $("<td>").text(brewery.name);
-                var tdPostalCode = $("<td>").text(brewery.postalCode);
-                var tdType = $("<td>").text(brewery.type);
-                var tdCity = $("<td>").text(brewery.city);
-                var tdPhone = $("<td>").text(brewery.phone);
-                var tdState = $("<td>").text(brewery.state);
-                var tdStreet = $("<td>").text(brewery.street);
-                var tdUrl = $("<td>").text(brewery.url);
-
-
-                tr.append(tdName).append(tdType).append(tdPhone).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
-
-                $(".breweries").append(tr);
-                // $(".breweries").append(brewery.name);
+            var tdName = $("<td>").text(brewery.name);
+            var tdPostalCode = $("<td>").text(brewery.postalCode);
+            var tdType = $("<td>").text(brewery.type);
+            var tdCity = $("<td>").text(brewery.city);
+            var tdPhone = $("<td>").text(brewery.phone);
+            var tdState = $("<td>").text(brewery.state);
+            var tdStreet = $("<td>").text(brewery.street);
+            var tdUrl = $("<td>").text(brewery.url);
+            // would like to find out how to turn this text into a url once displayed
+            // maybe add an attribute to the variable that turns the value into a link?
 
 
-                // $(".breweries").append(breweries[i].name + " ");
-                // $(".breweries").append(breweries[i].postal_code);
-            }
+            tr.append(tdName).append(tdType).append(tdPhone).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
 
-        });
-    }
-    displayBreweries();
+            $(".breweries").append(tr);
+            // $(".breweries").append(brewery.name);
 
 
-    function displayEvents() {
+            // $(".breweries").append(breweries[i].name + " ");
+            // $(".breweries").append(breweries[i].postal_code);
+        }
 
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&postalCode=32803";
+    });
+}
+displayBreweries();
 
-        $.ajax({
 
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            // console.log(response);
-            for (var i = 0; i < response._embedded.events.length; i++) {
-                var event = response._embedded.events;
-                // console.log (event[0].dates.start.dateTime); 
-            }
-        });
-    }
-};
+function displayEvents() {
+
+    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&postalCode=32803";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        // console.log(response);
+        for (var i = 0; i < response._embedded.events.length; i++) {
+            var event = response._embedded.events;
+            // console.log (event[0].dates.start.dateTime); 
+
+            // need to create a function that grabs the city and dates value from the user and return events based on those parameters.
+            // then need to create code to turn the 'zip code' values of the returned ^ list into a link that is an on click function that begins the API call for the brewery and feeds that specific 'zip code' as a parameter for the brewery API
+        }
+    });
+}
+
+displayEvents();
+
+// console.log("works");
