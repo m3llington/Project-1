@@ -1,9 +1,15 @@
 
 function displayBreweries(){
+    console.log("test");
     
-    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=orlando";
+  $("#Event").on("submit", function(event){
+    event.preventDefault();
+    console.log("test2");
+    var city = $("#event").val().trim();
+    //searches for breweries by city, and limit it to showing 5
+    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
     // var city = $("#event").val();
-    // tried using this ^ variable to let the user type a city and then feed it through as a parameter, but for some reason it wouldn't populate a list based on the city
+    //must create on click event to take in value from form when submit is clicked
 
     $.ajax({
         url: queryURL,
@@ -54,25 +60,34 @@ function displayBreweries(){
          }
 
      });
+  });
+  
+  
+  
+  
+   
+    
+
 }
 displayBreweries();
 
 
 function displayEvents(){
-    
-    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&postalCode=32803";
-
+    var city = "orlando";
+    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "";
+    console.log("displayevents");
     $.ajax({
         url : queryURL,
         method : "GET"
     }).then(function(response) {
-        // console.log(response);
-        for (var i = 0; i < response._embedded.events.length ; i++){
-            var event = response._embedded.events;
-        // console.log (event[0].dates.start.dateTime); 
+        var eventsArray = response._embedded.events
+       
+       
+        
 
-        // need to create a function that grabs the city and dates value from the user and return events based on those parameters.
-        // then need to create code to turn the 'zip code' values of the returned ^ list into a link that is an on click function that begins the API call for the brewery and feeds that specific 'zip code' as a parameter for the brewery API
+        for (var i = 0; i < eventsArray.length ; i++){
+            
+           console.log(eventsArray[i].name);
         }    
     });
 }
