@@ -19,7 +19,7 @@ function displayBreweries(){
 
         var breweries = response;
          for (var i = 0; i < breweries.length; i++){
-            //  Creating variables to hold brewerie information
+            //  Creating variables to hold brewery information
             var brewery = {
                  name : breweries[i].name,
                  postalCode : breweries[i].postal_code,
@@ -45,6 +45,8 @@ function displayBreweries(){
             var tdState = $("<td>").text(brewery.state);
             var tdStreet = $("<td>").text(brewery.street);
             var tdUrl = $("<td>").text(brewery.url);
+            // would like to find out how to turn this text into a url once displayed
+            // maybe add an attribute to the variable that turns the value into a link?
             
 
             tr.append(tdName).append(tdType).append(tdPhone).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
