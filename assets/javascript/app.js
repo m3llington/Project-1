@@ -1,4 +1,6 @@
 
+var eventState = "";
+
 function displayBreweries(){
     console.log("test");
     
@@ -6,8 +8,9 @@ function displayBreweries(){
     event.preventDefault();
     console.log("test2");
     var city = $("#city").val().trim();
+
     //searches for breweries by city, and limit it to showing 5
-    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
+    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&by_state=" + state +"&per_page=5";
 
     //must create on click event to take in value from form when submit is clicked
 
@@ -86,7 +89,7 @@ function displayEvents(){
         var state = $("#state").val().trim();
         var type = $("#type").val().trim();
         var zip = $("#zip").val().trim();
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+ "&size=5";
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+  "&size=5";
     console.log("displayevents");
 
     $(".events").text("");
@@ -111,6 +114,7 @@ function displayEvents(){
                 url : eventsArray[i]._embedded.venues[0].url
             }
             
+       
            console.log(eventsArray[i]);
         // console.log(eventsArray[i].classifications[0].segment.name);
        
@@ -129,6 +133,8 @@ function displayEvents(){
 
             $(".events").append(tr);
 
+            
+
             // Clears the text field 
             $("#city").val("");
             $("#state").val("");
@@ -136,7 +142,11 @@ function displayEvents(){
             $("#type").val("");
             $("#start").val("");
             $("#end").val("");
+
+            
         }    
+
+
     });
     });
 }
