@@ -1,8 +1,17 @@
-function displayBreweries() {
+function displayBreweries(){
+    console.log("test");
+    
+  $(".Info").on("submit", function(event){
+    event.preventDefault();
+    console.log("test2");
+    var city = $("#city").val().trim();
+    //searches for breweries by city, and limit it to showing 5
+    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
 
-    var queryURL = "https://api.openbrewerydb.org/breweries?by_city=orlando";
-    // var city = $("#event").val();
-    // tried using this ^ variable to let the user type a city and then feed it through as a parameter, but for some reason it wouldn't populate a list based on the city
+    //must create on click event to take in value from form when submit is clicked
+
+    // Clears the page each time the user types a new city in
+    $(".breweries").text("");
 
     $.ajax({
         url: queryURL,
@@ -11,7 +20,7 @@ function displayBreweries() {
         console.log(response);
 
         var breweries = response;
-        for (var i = 0; i < breweries.length; i++) {
+         for (var i = 0; i < breweries.length; i++){
             //  Creating variables to hold brewery information
             var brewery = {
                 name: breweries[i].name,
@@ -27,12 +36,13 @@ function displayBreweries() {
 
 
             console.log(brewery);
-
+            
             var tr = $("<tr>");
 
             var tdName = $("<td>").text(brewery.name);
             var tdPostalCode = $("<td>").text(brewery.postalCode);
-            var tdType = $("<td>").text(brewery.type);
+            // create code to get 'type' capitalized
+            var tdType = $("<td>").text(brewery.type.toUpperCase());
             var tdCity = $("<td>").text(brewery.city);
             var tdPhone = $("<td>").text(brewery.phone);
             var tdState = $("<td>").text(brewery.state);
@@ -40,42 +50,94 @@ function displayBreweries() {
             var tdUrl = $("<td>").text(brewery.url);
             // would like to find out how to turn this text into a url once displayed
             // maybe add an attribute to the variable that turns the value into a link?
-
+            
 
             tr.append(tdName).append(tdType).append(tdPhone).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
 
             $(".breweries").append(tr);
-            // $(".breweries").append(brewery.name);
 
+            // Clears the text field 
+            $("#event").val("");
 
-            // $(".breweries").append(breweries[i].name + " ");
-            // $(".breweries").append(breweries[i].postal_code);
-        }
+           
+         }
 
+     });
+  });
+  
+  
+  
+  
+   
+    
+
+}
+// Easier Project Solution 
+// 1. Either combine the displayEvents function with other function (call it displayInfo) so that both API calls happen at the same time and display in different tables (Events Table first, Breweries Table Second). This will elminate the need for two different pages altogether but will not be able to list the brewiers in order by proximity to the event,  or
+// 2. Create an on-click function for the events to display, then create a second on-click function for the zip-code of each displayed event that populates a second table below that lists the breweries in order of closest proximity.
+
+function displayEvents(){
+
+    $(".Info").on("submit", function(event){
+        event.preventDefault();
+
+        var city = $("#city").val().trim();
+        var state = $("#state").val().trim();
+        var type = $("#type").val().trim();
+        var zip = $("#zip").val().trim();
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+ "&size=5";
+    console.log("displayevents");
+
+    $(".events").text("");
+
+    $.ajax({
+        url : queryURL,
+        method : "GET"
+    }).then(function(response) {
+        var eventsArray = response._embedded.events
+       
+       
+        
+
+        for (var i = 0; i < eventsArray.length ; i++){
+            var event = {
+                name : eventsArray[i].name,
+                type : eventsArray[i].classifications[0].segment.name,
+                street : eventsArray[i]._embedded.venues[0].address.line1,
+                city: eventsArray[i]._embedded.venues[0].city.name,
+                state: eventsArray[i]._embedded.venues[0].state.name,
+                zip: eventsArray[i]._embedded.venues[0].postalCode,
+                url : eventsArray[i]._embedded.venues[0].url
+            }
+            
+           console.log(eventsArray[i]);
+        // console.log(eventsArray[i].classifications[0].segment.name);
+       
+        var tr = $("<tr>");
+
+            var tdName = $("<td>").text(event.name);
+            var tdPostalCode = $("<td>").text(event.zip);
+            // create code to get 'type' capitalized
+            var tdType = $("<td>").text(event.type.toUpperCase());
+            var tdCity = $("<td>").text(event.city);
+            var tdState = $("<td>").text(event.state);
+            var tdStreet = $("<td>").text(event.street);
+            var tdUrl = $("<td>").text(event.url);
+
+            tr.append(tdName).append(tdType).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
+
+            $(".events").append(tr);
+
+            // Clears the text field 
+            $("#city").val("");
+            $("#state").val("");
+            $("#zip").val("");
+            $("#type").val("");
+            $("#start").val("");
+            $("#end").val("");
+        }    
+    });
     });
 }
 displayBreweries();
-
-
-function displayEvents() {
-
-    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&postalCode=32803";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        // console.log(response);
-        for (var i = 0; i < response._embedded.events.length; i++) {
-            var event = response._embedded.events;
-            // console.log (event[0].dates.start.dateTime); 
-
-            // need to create a function that grabs the city and dates value from the user and return events based on those parameters.
-            // then need to create code to turn the 'zip code' values of the returned ^ list into a link that is an on click function that begins the API call for the brewery and feeds that specific 'zip code' as a parameter for the brewery API
-        }
-    });
-}
-
 displayEvents();
-
-// console.log("works");
