@@ -44,9 +44,12 @@ body {
   /* Standard syntax */
   @keyframes example {
     0%    {left:0px; top:0px;}
-    25%  { left:200px; top:0px;}
-    50%  {left:200px; top:200px;}
-    75%  { left:0px; top:200px;}
+    25%  { left:155px; top:0px;}
+    50%  {left:155px; top:155px;}
+    75%  { left:0px; top:155px;}
     100% {left:0px; top:0px;}
   }
-  
+  form { 
+    margin-left: 240px;
+    border: transparent;
+  }
