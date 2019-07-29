@@ -1,4 +1,3 @@
-
 function displayBreweries(){
     console.log("test");
     
@@ -16,26 +15,26 @@ function displayBreweries(){
 
     $.ajax({
         url: queryURL,
-        method : "GET"
-     }).then(function(response) {
-         console.log(response);
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
 
         var breweries = response;
          for (var i = 0; i < breweries.length; i++){
             //  Creating variables to hold brewery information
             var brewery = {
-                 name : breweries[i].name,
-                 postalCode : breweries[i].postal_code,
-                 type : breweries[i].brewery_type,
-                 city : breweries[i].city,
-                 phone : breweries[i].phone,
-                 state : breweries[i].state,
-                 street : breweries[i].street,
-                 url : breweries[i].website_url
+                name: breweries[i].name,
+                postalCode: breweries[i].postal_code,
+                type: breweries[i].brewery_type,
+                city: breweries[i].city,
+                phone: breweries[i].phone,
+                state: breweries[i].state,
+                street: breweries[i].street,
+                url: breweries[i].website_url
             };
 
-         
-           
+
+
             console.log(brewery);
             
             var tr = $("<tr>");
@@ -142,12 +141,3 @@ function displayEvents(){
 }
 displayBreweries();
 displayEvents();
-
-// console.log("works");
-
-
-// bonus bells and whistles
-// create a search box for type to filter between music, sports, etc.
-// create code to list breweries in order of proximity to clicked event
-
-
