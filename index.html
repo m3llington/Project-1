@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Planner</title>
+    <title>Whats The Move ?</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -25,10 +25,10 @@
         <form class="Info form-row">
 
 
-            <input class="col-sm-2" type="text" id="city" placeholder="City">
-            <div class="col-sm-2">
+            <input class="col-sm-1" type="text" id="city" placeholder="City">
+            <div class="col-sm-1">
                 <select class="form-control" id="state" name="state">
-                    <option value="">state</option>
+                    <option value="">State</option>
                     <option value="AK">Alaska</option>
                     <option value="AL">Alabama</option>
                     <option value="AR">Arkansas</option>
@@ -83,10 +83,10 @@
                     <option value="WY">Wyoming</option>
                 </select>
             </div>
-            <input class="col-sm-2" type="text" id="zip" placeholder="Postal Code">
-            <input class="col-sm-2" type="text" id="type" placeholder="Type">
-            <input class="col-sm-2" type="text" id="start" placeholder="Start Date">
-            <input class="col-sm-2" type="text" id="end" placeholder="End Date">
+            <input class="col-sm-1" type="text" id="zip" placeholder="Postal Code">
+            <input class="col-sm-1" type="text" id="type" placeholder="Type">
+            <input class="col-sm-1" type="text" id="start" placeholder="Start Date">
+            <input class="col-sm-1" type="text" id="end" placeholder="End Date">
             <button id="search"> Search </button>
 
         </form>
@@ -96,7 +96,7 @@
         </iframe>
     </header>
     <hr>
-    <table class="table table-dark">
+    <table id="table" class="table table-dark">
         <thead>
             <tr>
                 <th scope="col">Event</th>
@@ -114,7 +114,7 @@
         </tbody>
     </table>
     <br>
-    <table class="table table-dark">
+    <table id="bars" class="table table-dark">
         <thead>
             <tr>
                 <th scope="col">Brewery</th>
