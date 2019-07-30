@@ -31,13 +31,13 @@ function displayEvents(){
                 url : eventsArray[i]._embedded.venues[0].url
             }
             
+       
            console.log(eventsArray[i]);
         // console.log(eventsArray[i].classifications[0].segment.name);
        
             var tr = $("<tr>");
-            tr.addClass("event-button");
+            
             //creates a data attribute to store the city attribute from each pulled object
-            tr.attr("data-city", event.city);
             // tr.addClass("storedCity").text(event.city);
             
             // $(".event-button").on("click", function (){
@@ -45,18 +45,24 @@ function displayEvents(){
 
 
             // })
-            var tdName = $("<td>").text(event.name);
+            var tdName = $("<td>").addClass("event-button").attr("data-city", event.city).text(event.name);
             var tdPostalCode = $("<td>").text(event.zip);
             // create code to get 'type' capitalized
             var tdType = $("<td>").text(event.type.toUpperCase());
             var tdCity = $("<td>").text(event.city);
             var tdState = $("<td>").text(event.state);
             var tdStreet = $("<td>").text(event.street);
-            var tdUrl = $("<td>").text(event.url);
-
+            var tdUrl = $("<td>");
+            var tdUrl_a = $("<a>");
+            tdUrl_a.attr("href" , event.url);
+            tdUrl_a.attr("target" , "_blank");
+            tdUrl_a.text("Buy Tickets");
+            tdUrl.append(tdUrl_a);
             tr.append(tdName).append(tdType).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
 
             $(".events").append(tr);
+
+            
 
             // Clears the text field 
             $("#city").val("");
