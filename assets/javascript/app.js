@@ -7,8 +7,7 @@ function displayEvents(){
         var state = $("#state").val().trim();
         var type = $("#type").val().trim();
         var zip = $("#zip").val().trim();
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+  "&size=5";
-    console.log("displayevents");
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+ "&size=5";
 
     $(".events").text("");
 
@@ -38,6 +37,7 @@ function displayEvents(){
        
             var tr = $("<tr>");
             tr.addClass("event-button");
+            //creates a data attribute to store the city attribute from each pulled object
             tr.attr("data-city", event.city);
             // tr.addClass("storedCity").text(event.city);
             
@@ -53,8 +53,12 @@ function displayEvents(){
             var tdCity = $("<td>").text(event.city);
             var tdState = $("<td>").text(event.state);
             var tdStreet = $("<td>").text(event.street);
-            var tdUrl = $("<td>").text(event.url);
-
+            var tdUrl = $("<td>");
+            var tdUrl_a = $("<a>");
+            tdUrl_a.attr("href" , event.url);
+            tdUrl_a.attr("target" , "_blank");
+            tdUrl_a.text("Buy Tickets");
+            tdUrl.append(tdUrl_a);
             tr.append(tdName).append(tdType).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
 
             $(".events").append(tr);
@@ -75,6 +79,7 @@ function displayEvents(){
         $(".event-button").on("click", function(event){
             event.preventDefault();
             console.log("wubwub are you working");
+            //stores the data attribute previously created into the variable city and ffeds it into the api
             var city = $(this).attr("data-city");
            
             //searches for breweries by city, and limit it to showing 5
