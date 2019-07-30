@@ -36,9 +36,8 @@ function displayEvents(){
         // console.log(eventsArray[i].classifications[0].segment.name);
        
             var tr = $("<tr>");
-            tr.addClass("event-button");
+            
             //creates a data attribute to store the city attribute from each pulled object
-            tr.attr("data-city", event.city);
             // tr.addClass("storedCity").text(event.city);
             
             // $(".event-button").on("click", function (){
@@ -46,7 +45,7 @@ function displayEvents(){
 
 
             // })
-            var tdName = $("<td>").text(event.name);
+            var tdName = $("<td>").addClass("event-button").attr("data-city", event.city).text(event.name);
             var tdPostalCode = $("<td>").text(event.zip);
             // create code to get 'type' capitalized
             var tdType = $("<td>").text(event.type.toUpperCase());
