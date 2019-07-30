@@ -85,7 +85,7 @@ input[type="text"] {
     
     #bars tr:nth-child(even){background-color: black;}
     
-    #bars tr:hover {background-color: #ddd;}
+    
     
     #bars th {
       padding-top: 12px;
@@ -108,7 +108,7 @@ input[type="text"] {
     
     #table tr:nth-child(even){background-color: black;}
     
-    #table tr:hover {background-color: #ddd;}
+    #table tr:hover {background-color:rgb(134, 39, 39);}
     
     #table th {
       padding-top: 12px;
