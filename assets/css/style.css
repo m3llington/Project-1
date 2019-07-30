@@ -13,6 +13,11 @@ body {
    
 
 }
+#search { 
+  background-color: whitesmoke;
+ margin-left: 685px;
+ margin-top: 20px;
+}
 
 #title { 
 
@@ -53,3 +58,49 @@ body {
     margin-left: 240px;
     border: transparent;
   }
+  #bars{
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #bars td, #bars th {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    
+    #bars tr:nth-child(even){background-color: black;}
+    
+    #bars tr:hover {background-color: #ddd;}
+    
+    #bars th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: darkred;
+      color: white;
+    }
+  
+    #table{
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #table td, #table th {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    
+    #table tr:nth-child(even){background-color: black;}
+    
+    #table tr:hover {background-color: #ddd;}
+    
+    #table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: darkred;
+      color: white;
+    }
+
