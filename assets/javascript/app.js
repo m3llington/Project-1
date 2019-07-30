@@ -37,7 +37,9 @@ function displayEvents(){
        
             var tr = $("<tr>");
             tr.addClass("event-button");
-
+            tr.attr("data-city", event.city);
+            // tr.addClass("storedCity").text(event.city);
+            
             // $(".event-button").on("click", function (){
             //     console.log("wubwub");
 
@@ -63,13 +65,15 @@ function displayEvents(){
             $("#type").val("");
             $("#start").val("");
             $("#end").val("");
+
+            console.log($("#city").val(""));
         }
         
         $(".event-button").on("click", function(event){
             event.preventDefault();
             console.log("wubwub are you working");
-            var city = $("#city").val().trim();
-            console.log(event.state);
+            var city = $(this).attr("data-city");
+           
             //searches for breweries by city, and limit it to showing 5
             var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
         
