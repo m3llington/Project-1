@@ -1,9 +1,10 @@
+/* set size of page body & backgrpound color */
 body { 
      height: 900px;
   background-color: black
 }
 
-
+/* background image on page with its parameters */
 #html1 { 
     background-image:url("../Images/download\ \(1\).jpeg");
     background-repeat: round;
@@ -11,7 +12,7 @@ body {
     background-position-x: center;
     color: white;
    
-
+/* moves search bar postion */
 }
 #city { 
   margin-left: 355px;
@@ -32,16 +33,17 @@ input[type="text"] {
  margin-left: 685px;
  margin-top: 20px;
 }
-
+/* Positions page title */
 #title { 
 
     margin-inline-start: 400px;;
 }
-
+/* positions <p> element */
 .lead { 
     margin-inline-start: 420px;;
    
 }
+/* Gives "MOVE" in tile color and animation */
 #move { 
     color:red;
     width: 100px;
@@ -68,10 +70,12 @@ input[type="text"] {
     75%  { left:0px; top:155px;}
     100% {left:0px; top:0px;}
   }
+  /* position form element */
   form { 
     margin-left: 240px;
     border: transparent;
   }
+  /* Style table for brewery */
   #bars{
       font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
       border-collapse: collapse;
@@ -94,7 +98,7 @@ input[type="text"] {
       background-color: darkred;
       color: white;
     }
-  
+  /* Style table for Events */
     #table{
       font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
       border-collapse: collapse;
