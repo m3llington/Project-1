@@ -3,24 +3,26 @@ function displayEvents(){
     $(".Info").on("submit", function(event){
         event.preventDefault();
 
+        // Variables to grab the users input and feed it into the API
         var city = $("#city").val().trim();
         var state = $("#state").val().trim();
         var type = $("#type").val().trim();
         var zip = $("#zip").val().trim();
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+ "&size=5";
 
+    // Clears the events table each time a new search occurs
     $(".events").text("");
 
+    // Ajax call to grab the event info
     $.ajax({
         url : queryURL,
         method : "GET"
     }).then(function(response) {
         var eventsArray = response._embedded.events
        
-       
-        
-
         for (var i = 0; i < eventsArray.length ; i++){
+
+            // Creating an object to hold the new event
             var event = {
                 name : eventsArray[i].name,
                 type : eventsArray[i].classifications[0].segment.name,
@@ -30,39 +32,32 @@ function displayEvents(){
                 zip: eventsArray[i]._embedded.venues[0].postalCode,
                 url : eventsArray[i]._embedded.venues[0].url
             }
-            
+        //    console.log(eventsArray[i]);
        
-           console.log(eventsArray[i]);
-        // console.log(eventsArray[i].classifications[0].segment.name);
-       
+        // Creating a new table row
             var tr = $("<tr>");
             
-            //creates a data attribute to store the city attribute from each pulled object
-            // tr.addClass("storedCity").text(event.city);
-            
-            // $(".event-button").on("click", function (){
-            //     console.log("wubwub");
-
-
-            // })
+            // Creating variables to hold the new event info
             var tdName = $("<td>").addClass("event-button").attr("data-city", event.city).text(event.name);
             var tdPostalCode = $("<td>").text(event.zip);
-            // create code to get 'type' capitalized
             var tdType = $("<td>").text(event.type.toUpperCase());
             var tdCity = $("<td>").text(event.city);
             var tdState = $("<td>").text(event.state);
             var tdStreet = $("<td>").text(event.street);
+
+            // Making the URLs functioning links
             var tdUrl = $("<td>");
             var tdUrl_a = $("<a>");
             tdUrl_a.attr("href" , event.url);
             tdUrl_a.attr("target" , "_blank");
-            tdUrl_a.text("Buy Tickets");
+            tdUrl_a.text("Website");
             tdUrl.append(tdUrl_a);
+
+            // Appending the new data to the new table row
             tr.append(tdName).append(tdType).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
 
+            //  Appending the new table row to the 'events' table body
             $(".events").append(tr);
-
-            
 
             // Clears the text field 
             $("#city").val("");
@@ -71,24 +66,20 @@ function displayEvents(){
             $("#type").val("");
             $("#start").val("");
             $("#end").val("");
-
-            console.log($("#city").val(""));
         }
         
         $(".event-button").on("click", function(event){
             event.preventDefault();
-            console.log("wubwub are you working");
-            //stores the data attribute previously created into the variable city and ffeds it into the api
+            //stores the data attribute previously created into the variable city and feeds it into the api
             var city = $(this).attr("data-city");
            
             //searches for breweries by city, and limit it to showing 5
             var queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city +"&per_page=5";
         
-            //must create on click event to take in value from form when submit is clicked
-        
             // Clears the page each time the user types a new city in
             $(".breweries").text("");
-        
+
+            // Ajax call to get the brewery info
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -97,7 +88,8 @@ function displayEvents(){
         
                 var breweries = response;
                  for (var i = 0; i < breweries.length; i++){
-                    //  Creating variables to hold brewery information
+
+                    //  Creating an object to hold brewery information
                     var brewery = {
                         name: breweries[i].name,
                         postalCode: breweries[i].postal_code,
@@ -108,16 +100,14 @@ function displayEvents(){
                         street: breweries[i].street,
                         url: breweries[i].website_url
                     };
-        
-        
-        
-                    console.log(brewery);
-                    
+                    // console.log(brewery);
+
+                    // Creating a new table row 
                     var tr = $("<tr>");
                     
+                    // Creating variables to 
                     var tdName = $("<td>").text(brewery.name);
                     var tdPostalCode = $("<td>").text(brewery.postalCode);
-                    // create code to get 'type' capitalized
                     var tdType = $("<td>").text(brewery.type.toUpperCase());
                     var tdCity = $("<td>").text(brewery.city);
                     var tdPhone = $("<td>").text(brewery.phone);
@@ -130,18 +120,15 @@ function displayEvents(){
                     tdUrl_a.text("Website");
                     tdUrl.append(tdUrl_a);
                 
-                    // would like to find out how to turn this text into a url once displayed
-                    // maybe add an attribute to the variable that turns the value into a link?
-                    
-        
+                 
+                    // Appending all the data to the new table row
                     tr.append(tdName).append(tdType).append(tdPhone).append(tdStreet).append(tdCity).append(tdState).append(tdPostalCode).append(tdUrl);
-        
+
+                    // Appending the new table row to the breweries table
                     $(".breweries").append(tr);
         
                     // Clears the text field 
                     $("#event").val("");
-        
-                   
                  }
         
              });
@@ -150,15 +137,7 @@ function displayEvents(){
     });
 }
 
-  
-    
-
-// }
-// Easier Project Solution 
-// 1. Either combine the displayEvents function with other function (call it displayInfo) so that both API calls happen at the same time and display in different tables (Events Table first, Breweries Table Second). This will elminate the need for two different pages altogether but will not be able to list the brewiers in order by proximity to the event,  or
-// 2. Create an on-click function for the events to display, then create a second on-click function for the zip-code of each displayed event that populates a second table below that lists the breweries in order of closest proximity.
-
-
-
 displayEvents();
+
+
 
