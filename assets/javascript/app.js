@@ -123,7 +123,13 @@ function displayEvents(){
                     var tdPhone = $("<td>").text(brewery.phone);
                     var tdState = $("<td>").text(brewery.state);
                     var tdStreet = $("<td>").text(brewery.street);
-                    var tdUrl = $("<td>").text(brewery.url);
+                    var tdUrl = $("<td>");
+                    var tdUrl_a = $("<a>");
+                    tdUrl_a.attr("href" , brewery.url);
+                    tdUrl_a.attr("target" , "_blank");
+                    tdUrl_a.text("Website");
+                    tdUrl.append(tdUrl_a);
+                
                     // would like to find out how to turn this text into a url once displayed
                     // maybe add an attribute to the variable that turns the value into a link?
                     
