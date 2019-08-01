@@ -2,7 +2,8 @@ function displayEvents(){
 
     $(".Info").on("submit", function(event){
         event.preventDefault();
-
+    //clears the no result div after the search bar is clicked
+    $("#no-result").text("");
         // Variables to grab the users input and feed it into the API
         var city = $("#city").val().trim();
         var state = $("#state").val().trim();
