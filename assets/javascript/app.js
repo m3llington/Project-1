@@ -24,7 +24,7 @@ function displayEvents(){
     }).then(function(response) {
         //if nothing is return from zipcode search it shows "no results found"
         if (!(response.page.totalElements)){
-            $("#no-result").text("No results found");
+            $("#no-result").text("Lame area no moves bro!!!");
             return false;
         };
         
