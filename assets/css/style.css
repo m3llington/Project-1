@@ -12,7 +12,17 @@ body {
     background-position-x: center;
     color: white;
    
+
+}
 /* moves search bar postion */
+#title { 
+
+    margin-inline-start: 400px;;
+}
+/* positions <p> element */
+.lead { 
+    margin-inline-start: 420px;;
+   
 }
 #city { 
   margin-left: 355px;
@@ -121,4 +131,145 @@ input[type="text"] {
       background-color: darkred;
       color: white;
     }
+/* Making app[lication Mobile responsive  */
+    @media screen and (max-width: 1024px) {
+      #city { 
+        margin-left: 260px;
+      }
+      
+      #state { 
+        height: 30px;
+        margin-top: 6px;
+        border-radius: 10px;
+      }
+      input[type="text"] { 
+        border-radius: 8px;
+        margin: 5px;
+        
+      }
+      #search { 
+        background-color: whitesmoke;
+       margin-left: 485px;
+       margin-top: 20px;
+      }
+    
+      h1 { 
+          font-size: 50px !important;
+        }
+        #title { 
 
+          margin-inline-start: 280px;;
+      }
+      /* positions <p> element */
+      .lead { 
+          margin-inline-start: 280px;;
+         
+      }
+
+     #move { 
+    color:red;
+   
+    
+    
+    position: relative;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+
+  }
+  
+
+  /* Standard syntax */
+  @keyframes example {
+    0%    {left:0px; top:0px;}
+    25%  { left:145px; top:0px;}
+    50%  {left:145px; top:145px;}
+    75%  { left:0px; top:145px;}
+    100% {left:0px; top:0px;}
+  }
+     
+      }
+
+/* making app mobile resonsive  */
+
+      @media only screen and (min-width: 375px) 
+                and (max-width: 667px) 
+             and (-webkit-min-device-pixel-ratio: 2) {
+        body{ 
+          height: 500px;
+        }
+       
+        #city { 
+         margin-left: 70px;
+          
+        }
+        
+        #state { 
+          height: 20px;
+          width:50px;
+          margin:5px;
+          
+          border-radius: 10px;
+        }
+        input[type="text"] { 
+          height: 20px;
+          width:50px;
+          margin-left: 5px;
+          
+        }
+        #search { 
+          background-color: whitesmoke;
+         margin-left: 210px;
+         margin-top: 20px;
+         width:70px;
+        }
+      
+        h1 { 
+            font-size: 25px !important;
+            
+           
+          }
+          #title { 
+           
+            margin-inline-start: 170px;;
+        }
+        /* positions <p> element */
+        .lead { 
+            margin-inline-start: 120px;
+            font-size: 15px !important;
+           
+        }
+      }
+  
+       #move { 
+      color:red;
+     
+      
+      
+      position: relative;
+      -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+      -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+      animation-name: example;
+      animation-duration: 5s;
+      animation-delay: 1s;
+      animation-iteration-count: infinite;
+  
+    }
+    
+  
+    /* Standard syntax */
+    @keyframes example {
+      0%    {left:0px; top:0px;}
+      25%  { left:70px; top:0px;}
+      50%  {left:70px; top:70px;}
+      75%  { left:0px; top:70px;}
+      100% {left:0px; top:0px;}
+    }
+       
+        
+  
