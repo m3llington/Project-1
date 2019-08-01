@@ -18,6 +18,12 @@ function displayEvents(){
         url : queryURL,
         method : "GET"
     }).then(function(response) {
+        //if nothing is return from zipcode search it shows "no results found"
+        if (!(response.page.totalElements)){
+            $("#no-result").text("No results found");
+            return false;
+        };
+        
         var eventsArray = response._embedded.events
        
         for (var i = 0; i < eventsArray.length ; i++){
