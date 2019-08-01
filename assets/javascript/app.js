@@ -8,7 +8,10 @@ function displayEvents(){
         var state = $("#state").val().trim();
         var type = $("#type").val().trim();
         var zip = $("#zip").val().trim();
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip+ "&size=5";
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=TSEGa9L3UMUnkG8jrVBHViun6NdHepmA&city=" + city + "&stateCode=" + state + "&postalCode=" + zip + "&classificationName=" + type +  "&size=5";
+        console.log(type);
+
+        console.log(queryURL);
 
     // Clears the events table each time a new search occurs
     $(".events").text("");
@@ -32,7 +35,7 @@ function displayEvents(){
                 zip: eventsArray[i]._embedded.venues[0].postalCode,
                 url : eventsArray[i]._embedded.venues[0].url
             }
-        //    console.log(eventsArray[i]);
+           console.log(eventsArray[i]);
        
         // Creating a new table row
             var tr = $("<tr>");
